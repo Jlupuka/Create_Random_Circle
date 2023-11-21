@@ -1,8 +1,7 @@
 import sys
 import random
 from PyQt5.QtWidgets import QApplication, QWidget
-from PyQt5.QtGui import QPainter
-from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QPainter, QColor
 from PyQt5.uic import loadUi
 
 
@@ -29,10 +28,17 @@ class CircleDrawer(QWidget):
         diameter = random.randint(10, 100)
 
         painter = QPainter(self)
+        color = random_color()
+
         painter.begin(self)
-        painter.setPen(Qt.yellow)
-        painter.setBrush(Qt.yellow)
+
+        painter.setPen(QColor(*color))
+        painter.setBrush(QColor(*color))
         painter.drawEllipse(100, 100, diameter, diameter)
+
+
+def random_color():
+    return random.randrange(256), random.randrange(256), random.randrange(256)
 
 
 if __name__ == '__main__':
